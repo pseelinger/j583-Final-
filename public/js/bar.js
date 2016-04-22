@@ -1,8 +1,6 @@
-<script>
-
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
@@ -25,11 +23,12 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data.tsv", type, function(error, data) {
+d3.csv("domestic.csv", function(error, data) {
   if (error) throw error;
 
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+  x.domain(data.map(function(d) { return d.knowledgeType; }));
+  y.domain([0, d3.max(data, function(d) { return d.US; })]);
+
 
   svg.append("g")
       .attr("class", "x axis")
@@ -45,18 +44,14 @@ d3.tsv("data.tsv", type, function(error, data) {
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Frequency");
+    
 
   svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
+      .attr("x", function(d) { return x(d.knowledgeType); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
+      .attr("y", function(d) { return y(d.US); })
+      .attr("height", function(d) { return height - y(d.US); });
 });
-
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
-}
