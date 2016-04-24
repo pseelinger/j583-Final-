@@ -1,6 +1,12 @@
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 300 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+function drawGraphs(dataset){
+var outer_width = 330,
+    outer_height = 200,
+    margin = {top: 10, right: 10, bottom: 10, left: 10},
+    padding = {top: 20, right: 20, bottom: 20, left: 20},
+    inner_width = outer_width - margin.left - margin.right,
+    inner_height = outer_height - margin.top - margin.bottom,
+    width = inner_width - padding.left - padding.right,
+    height = inner_height - padding.top - padding.bottom;
 
 var key = function(d) {
         return d.knowledgeType;
@@ -15,19 +21,21 @@ var svg = {};
 
 countries.forEach(function(entry){
  svg[entry] = d3.select("#" + entry).append("svg")
-     .attr("width", width + margin.left + margin.right)
-     .attr("height", height + margin.top + margin.bottom)
+     .attr("width", outer_width)
+     .attr("height", outer_height)
+     .attr("class", "graph")
      .attr("id", entry + "-graph")
    .append("g")
      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 });
 
-d3.csv('domestic.csv', function(error, data){
+d3.csv(dataset, function(error, data){
 
 x.domain(data.map(key));
-    xAxis = d3.svg.axis()
+   xAxis = d3.svg.axis()
         .scale(x)
         .orient('bottom')
+        .ticks(data.length);
 
     countries.forEach(function(entry) {
         var g = svg[entry].append('g')
@@ -39,9 +47,8 @@ x.domain(data.map(key));
 
 
         var y = d3.scale.linear()
-            .domain([d3.min(data, function(d) { return +d[entry]; }),
-                  d3.max(data, function(d) { return +d[entry]; })])
-            .range([height*0.2, height*0.8]);
+            .domain([0,1])
+            .range([0, height]);
 
         var bars = svg[entry].selectAll('rect')
             .data(data, key)
@@ -54,4 +61,12 @@ x.domain(data.map(key));
             .attr('x', function(d, i) { return x(d.knowledgeType); })
             .attr('y', function(d) { return height-y(+d[entry]); })
     });
+});
+}
+
+drawGraphs("domestic.csv")
+
+$('#change-data').on('change', function(){
+  $('.graph').hide();
+  drawGraphs(this.value);
 });

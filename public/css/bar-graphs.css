@@ -1,1 +1,9 @@
-
+.axis path{
+  fill: none;
+ stroke: #000;
+ shape-rendering: crispEdges;
+}
+.tick text{
+  color: black;
+  opacity: 1
+}
