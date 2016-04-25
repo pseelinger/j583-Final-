@@ -41,7 +41,7 @@ x.domain(data.map(key));
         var g = svg[entry].append('g')
             .attr('transform', 'translate(0, ' + margin.bottom + ')')
             .append('g')
-            .attr('class', 'axis')
+            .attr('class', 'x axis')
             .attr('transform', 'translate(0, ' + height + ')')
             .call(xAxis);
 
@@ -60,11 +60,21 @@ x.domain(data.map(key));
             .attr('width', function(d) { return x.rangeBand(); })
             .attr('x', function(d, i) { return x(d.knowledgeType); })
             .attr('y', function(d) { return height-y(+d[entry]); })
+            .append('text')
+              .text(function(d){ return d[entry] * 100 + "%"})
+              .attr('text-anchor', 'middle')
+              .attr('fill', 'white')
+              .attr("x", function(d) {
+              return x(d.knowledgeType);
+             })
+             .attr("y", function(d) {
+              return y(d[entry]) + 14;
+            });
     });
 });
 }
 
-drawGraphs("domestic.csv")
+drawGraphs("domestic.csv");
 
 $('#change-data').on('change', function(){
   $('.graph').hide();

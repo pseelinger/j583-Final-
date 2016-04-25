@@ -4,23 +4,31 @@
   <script src="/js/angular.min.js"></script>
   <script src="/js/d3.min.js"></script>
   <script   src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-  <script src="/js/app.js"></script>
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/bar-graphs.css">
 
 </head>
-<body>
+<body ng-app="myApp">
 
 <div class="container">
   <div class="row">
     <div class="col-md-6">
+      <h3>US Scores</h3>
       <div id="US"></div>
     </div>
     <div class="col-md-6">
-      <div id="Denmark"></div>
-      <div id="Finland"></div>
-      <div id="UK"></div>
+      <tabset>
+        <tab heading="Denmark">
+          <div id="Denmark"></div>
+        </tab>
+        <tab heading="Finland">
+          <div id="Finland"></div>
+        </tab>
+        <tab heading="UK">
+          <div id="UK"></div>
+        </tab>
+    </tabset>
   </div>
   </div>
   <div class="row">
@@ -31,6 +39,7 @@
     </select>
   </div>
 </div>
+<script src="/js/app.js"></script>
 <script src="/js/bar.js"></script>
 </body>
 </html>
