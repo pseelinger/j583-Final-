@@ -10,6 +10,8 @@ app.set('view engine', 'ejs');
 var pages = require('./controllers/pages');
 
 app.get('/', pages.knowledge);
+app.get('/credits', pages.credits);
+app.get('/spending', pages.bubble);
 
 //start the server
 app.listen(8080, function(){

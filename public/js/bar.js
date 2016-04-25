@@ -59,17 +59,9 @@ x.domain(data.map(key));
             .attr('height', function(d) { return y(+d[entry]); })
             .attr('width', function(d) { return x.rangeBand(); })
             .attr('x', function(d, i) { return x(d.knowledgeType); })
-            .attr('y', function(d) { return height-y(+d[entry]); })
-            .append('text')
-              .text(function(d){ return d[entry] * 100 + "%"})
-              .attr('text-anchor', 'middle')
-              .attr('fill', 'white')
-              .attr("x", function(d) {
-              return x(d.knowledgeType);
-             })
-             .attr("y", function(d) {
-              return y(d[entry]) + 14;
-            });
+            .attr('y', function(d) { return height - y(+d[entry]); })
+            .append("svg:title")
+              .text(function(d) { return d[entry]; });
     });
 });
 }

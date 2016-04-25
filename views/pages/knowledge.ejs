@@ -12,11 +12,14 @@
 <body ng-app="myApp">
 
 <div class="container">
+
   <div class="row">
+    <a href='/credits'>Credits</a>
     <div class="col-md-6">
       <h3>US Scores</h3>
       <div id="US"></div>
     </div>
+
     <div class="col-md-6">
       <tabset>
         <tab heading="Denmark">
@@ -30,7 +33,9 @@
         </tab>
     </tabset>
   </div>
+
   </div>
+
   <div class="row">
     <select id="change-data">
       <option value="domestic.csv">Domestic</option>
@@ -38,8 +43,11 @@
       <option value="political.csv">Political</option>
     </select>
   </div>
+
 </div>
-<script src="/js/app.js"></script>
+
 <script src="/js/bar.js"></script>
+<script src="/js/app.js"></script>
+
 </body>
 </html>
