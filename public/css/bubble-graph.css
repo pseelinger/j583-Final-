@@ -1,0 +1,15 @@
+circle{
+  opacity: .9;
+}
+#US{
+  fill: blue;
+}
+#UK{
+  fill: red;
+}
+#Denmark{
+  fill: #950000;
+}
+#Finland{
+  fill: #000043;
+}

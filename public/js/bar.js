@@ -19,6 +19,10 @@ var countries = ["US", "Finland", "Denmark", "UK"];
 
 var svg = {};
 
+var div = d3.select("body").append("div")
+.attr("class", "info-box")
+.style("opacity", 0);
+
 countries.forEach(function(entry){
  svg[entry] = d3.select("#" + entry).append("svg")
      .attr("width", outer_width)
@@ -60,8 +64,19 @@ x.domain(data.map(key));
             .attr('width', function(d) { return x.rangeBand(); })
             .attr('x', function(d, i) { return x(d.knowledgeType); })
             .attr('y', function(d) { return height - y(+d[entry]); })
-            .append("svg:title")
-              .text(function(d) { return d[entry]; });
+            .on("mouseover", function(d) {
+              div.transition()
+                  .duration(300)
+                  .style("opacity", 1);
+              div .html(d[entry] + "%")
+                  .attr("x", 100*d.knowledgeType)
+                  .attr("y", d[entry]);
+              })
+            .on("mouseout", function(d) {
+                div.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+          });
     });
 });
 }
@@ -70,5 +85,6 @@ drawGraphs("domestic.csv");
 
 $('#change-data').on('change', function(){
   $('.graph').hide();
+  $('.info-box').hide();
   drawGraphs(this.value);
 });

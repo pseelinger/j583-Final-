@@ -22,9 +22,13 @@ var svg = d3.select("#bubble-chart").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
 d3.csv("politicalKnowledge.csv", function(error, data){
-  x.domain([0.5,1]);
-  y.domain([0.5,d3.max(data, function(d){return d.AVG_INT;})]);
+  x.domain([0.4,.85]);
+  y.domain([0.4,.85]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -54,7 +58,19 @@ d3.csv("politicalKnowledge.csv", function(error, data){
     .attr("class", "point")
     .attr("cx", function(d){ return x(d.AVG) ;})
     .attr("cy", function(d){ return y(d.AVG_INT) ;})
-    .attr("r", function(d){return d.PublicMediaPerCapita * .25;})
+    .attr("r", function(d){return d.PublicMediaPerCapita ;})
     .attr("id", function(d){return d.country;})
-    .attr("fill", "#000")
+    .on("mouseover", function(d) {
+      div.transition()
+          .duration(300)
+          .style("opacity", 1);
+      div .html(d.country + ": $" + d.PublicMediaPerCapita)
+          .style("left", "20%")
+          .style("top", "50%");
+      })
+    .on("mouseout", function(d) {
+        div.transition()
+            .duration(500)
+            .style("opacity", 0);
+  });
 });
