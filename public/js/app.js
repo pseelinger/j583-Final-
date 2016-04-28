@@ -44,18 +44,3 @@ app.directive('tabset', function() {
   }
 }
 });
-
-app.controller('TableController', ['$http', function($http){
-
-  var _this = this;
-  $http.get('/js/politicalKnowledge.json')
-  .success(function(data){
-    console.log(data);
-    console.log(this);
-    _this.knowledge = data;
-  })
-  .error(function(msg){
-    console.log("Beep boop, something went wrong: \n" + msg);
-  });
-
-}]);

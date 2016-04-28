@@ -1,12 +1,3 @@
-.axis path{
-  fill: none;
- stroke: #000;
- shape-rendering: crispEdges;
-}
-.tick text{
-  color: black;
-  opacity: 1
-}
 .tooltip{
   line-height: 1;
 font-weight: bold;
@@ -14,4 +5,40 @@ padding: 12px;
 background: rgba(0, 0, 0, 0.8);
 color: #fff;
 border-radius: 2px;
+}
+.graphs{
+  border-top: 1px solid #333333;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+#Us-graph{
+  margin-top: 53px;
+}
+#Us-graph rect{
+  fill: #11239f;
+}
+#UK-graph rect{
+  fill: #9f1123;
+}
+#Finland-graph rect{
+  fill: #112344;
+}
+#Denmark-graph rect{
+  fill: #441123;
+}
+#Denmark, #Finland, #UK{
+  padding-top: 10.5px;
+}
+#select-div{
+  font-size: 18px;
+  margin: 0 auto;
+}
+select{
+  background-color: #443355;
+  color: white;
+  margin: 0 auto;
+  font-size: 16px;
+}
+rect + text{
+  font-family: Apricity;
 }

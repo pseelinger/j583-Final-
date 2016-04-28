@@ -1,6 +1,7 @@
 function drawGraphs(dataset){
-var outer_width = 330,
-    outer_height = 200,
+  console.log(dataset);
+var outer_width = 400,
+    outer_height = 400,
     margin = {top: 10, right: 10, bottom: 10, left: 10},
     padding = {top: 20, right: 20, bottom: 20, left: 20},
     inner_width = outer_width - margin.left - margin.right,
@@ -20,8 +21,7 @@ var countries = ["US", "Finland", "Denmark", "UK"];
 var svg = {};
 
 var div = d3.select("body").append("div")
-.attr("class", "info-box")
-.style("opacity", 0);
+.attr("class", "info-box");
 
 countries.forEach(function(entry){
  svg[entry] = d3.select("#" + entry).append("svg")
@@ -31,10 +31,18 @@ countries.forEach(function(entry){
      .attr("id", entry + "-graph")
    .append("g")
      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+     svg[entry].append('g')
+     .append('text')
+     .text(entry + " Scores")
+     .attr('transform', 'translate(' + (width/2) + ', 20)')
+     .attr('text-anchor', 'middle')
+     .attr('fill', '#444444')
+     .style('font-size', '21px');
 });
 
 d3.csv(dataset, function(error, data){
-
+console.log(data);
 x.domain(data.map(key));
    xAxis = d3.svg.axis()
         .scale(x)
@@ -42,6 +50,7 @@ x.domain(data.map(key));
         .ticks(data.length);
 
     countries.forEach(function(entry) {
+
         var g = svg[entry].append('g')
             .attr('transform', 'translate(0, ' + margin.bottom + ')')
             .append('g')
@@ -50,33 +59,30 @@ x.domain(data.map(key));
             .call(xAxis);
 
 
+        var rectG = svg[entry].append('g');
+
         var y = d3.scale.linear()
             .domain([0,1])
             .range([0, height]);
 
-        var bars = svg[entry].selectAll('rect')
+        var bars = rectG.selectAll('rect')
             .data(data, key)
-            .enter();
+            .enter()
+            .append('g');
 
         bars.append('rect')
             .attr('class', 'bar')
             .attr('height', function(d) { return y(+d[entry]); })
             .attr('width', function(d) { return x.rangeBand(); })
-            .attr('x', function(d, i) { return x(d.knowledgeType); })
-            .attr('y', function(d) { return height - y(+d[entry]); })
-            .on("mouseover", function(d) {
-              div.transition()
-                  .duration(300)
-                  .style("opacity", 1);
-              div .html(d[entry] + "%")
-                  .attr("x", 100*d.knowledgeType)
-                  .attr("y", d[entry]);
-              })
-            .on("mouseout", function(d) {
-                div.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-          });
+            .attr('x', function(d) { return x(d.knowledgeType); })
+            .attr('y', function(d) { return height - y(+d[entry]); });
+
+      bars.append('text')
+            .text(function(d){return (d[entry] * 100).toFixed(1) + "%";})
+            .attr('x', function(d) { return x(d.knowledgeType) + 27; })
+            .attr('y', function(d) { return height - y(+d[entry]) + 20; })
+            .attr('text-anchor', 'right')
+            .attr('fill', 'white');
     });
 });
 }
@@ -85,6 +91,7 @@ drawGraphs("domestic.csv");
 
 $('#change-data').on('change', function(){
   $('.graph').hide();
+  $('#blank').hide();
   $('.info-box').hide();
   drawGraphs(this.value);
 });

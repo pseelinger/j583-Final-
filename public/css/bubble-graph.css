@@ -1,5 +1,14 @@
 circle{
-  opacity: .9;
+  opacity: .75;
+}
+svg{
+  margin: 0 auto;
+}
+.tooltip{
+  background-color: #443355;
+  padding: 15px;
+  border-radius: 3px;
+  color: white;
 }
 #US{
   fill: blue;
@@ -12,4 +21,11 @@ circle{
 }
 #Finland{
   fill: #000043;
+}
+#Denmark + text{
+  z-index: 999;
+  transform: translateY(-85px);
+}
+#Denmark + text, #US + text{
+  fill: black;
 }

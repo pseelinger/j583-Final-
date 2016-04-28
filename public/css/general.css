@@ -1,0 +1,27 @@
+body{
+  background-color: #f0f0f0;
+  color: #4f4f4f;
+  margin-bottom: 25px;
+}
+@font-face {
+  src:url('/fonts/Apricity400.otf');
+  font-family: "Apricity";
+}
+h2{
+  font-family: Apricity;
+  color: #333333;
+  font-size: 36px;
+}
+svg{
+  background-color: #44f498;
+  border-radius: 3px;
+}
+.axis path{
+  fill: none;
+ stroke: #222222;
+ shape-rendering: crispEdges;
+}
+.tick text{
+  fill: #222222;
+  opacity: 1
+}

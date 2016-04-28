@@ -6,6 +6,7 @@
   <script   src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/general.css">
   <link rel="stylesheet" type="text/css" href="/css/bar-graphs.css">
 
 </head>
@@ -14,7 +15,7 @@
 <div class="container">
 
   <div class="row">
-    <h2>How Do Americans Compare to Other Countries on Knowledge of Current Events?</h2>
+    <h2>Knowledge on Current Events</h2>
     <p>It seems that in general, young Americans don't know as much about what's going on around them as the rest of the world.
     Participants from the US, UK, Denmark and Finland were given a series of calibrated questions about domestic, international
     and political events to test their knowledge of what's going on in the world. Below are the results of the tests. Hover over
@@ -23,13 +24,24 @@
     <a href='/credits'>Credits</a>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <h3>US Scores</h3>
+  <div class="row graphs">
+    <div class="col-md-5">
       <div id="US"></div>
     </div>
 
-    <div class="col-md-6">
+  <div class="col-md-2">
+    <div id="select-div">
+    <p>Choose a Test:</p>
+    <select id="change-data">
+      <option value="" selected id="blank">Select a test...</option>
+      <option value="domestic.csv">Domestic</option>
+      <option value="international.csv">International</option>
+      <option value="political.csv">Political</option>
+    </select>
+  </div>
+  </div>
+
+    <div class="col-md-5">
       <tabset>
         <tab heading="Denmark">
           <div id="Denmark"></div>
@@ -46,15 +58,12 @@
   </div>
 
   <div class="row">
-    <select id="change-data">
-      <option value="domestic.csv">Domestic</option>
-      <option value="international.csv">International</option>
-      <option value="political.csv">Political</option>
-    </select>
+
   </div>
 
 </div>
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+
 <script src="/js/bar.js"></script>
 <script src="/js/app.js"></script>
 
