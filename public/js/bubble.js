@@ -1,4 +1,4 @@
-var margin = {top: 30, right: 30, bottom: 80, left: 100},
+var margin = {top: 100, right: 30, bottom: 80, left: 100},
     width = 750 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -30,6 +30,13 @@ d3.csv("politicalKnowledge.csv", function(error, data){
   x.domain([0.5,.85]);
   y.domain([0.4,.75]);
 
+svg.append('g')
+  .append('text')
+  .text('Public Spending on Media Versus Knowledge of Current Events')
+    .attr('transform', 'translate(' + (width/2) + ', -70)')
+    .attr('text-anchor', 'middle')
+    .style('font-size', '21px');
+
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -38,7 +45,8 @@ d3.csv("politicalKnowledge.csv", function(error, data){
       .text("Domestic Knowledge Test Score")
       .attr("transform", "translate(" + width/2 + ",60)")
       .style("font-size", "18px")
-      .attr("text-anchor", "middle");
+      .attr("text-anchor", "middle")
+      .attr('fill', '#333333');
 
   svg.append("g")
       .attr("class", "y axis")
@@ -49,7 +57,8 @@ d3.csv("politicalKnowledge.csv", function(error, data){
       .attr("dy", ".71em")
       .style("text-anchor", "middle")
       .style("font-size", "18px")
-      .text("International Knowledge Test Score");
+      .text("International Knowledge Test Score")
+      .attr('fill', '#333333');
 
   var circles = svg.selectAll("point")
     .data(data)
@@ -69,15 +78,11 @@ d3.csv("politicalKnowledge.csv", function(error, data){
     .attr("cy", function(d){ return y(d.AVG_INT) ;})
     .attr("r", function(d){return d.PublicMediaPerCapita ;})
     .attr("id", function(d){return d.country;});
-  //   .on("mouseout", function(d) {
-  //       div.transition()
-  //           .duration(500)
-  //           .style("opacity", 0);
-  // });
+
 
   circles.append('text')
     .text(function(d){return d.country;})
     .attr('x', function(d){return x(d.AVG) - 10;})
     .attr('y', function(d){return y(d.AVG_INT) - 5;})
-    .attr('fill', 'white');
+    .attr('fill', '#f0f0f0');
 });

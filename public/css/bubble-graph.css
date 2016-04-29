@@ -3,6 +3,9 @@ circle{
 }
 svg{
   margin: 0 auto;
+  font-family: Chapaza;
+  font-weight: normal;
+  color: #4f4f4f;
 }
 .tooltip{
   background-color: #443355;
@@ -25,7 +28,4 @@ svg{
 #Denmark + text{
   z-index: 999;
   transform: translateY(-85px);
-}
-#Denmark + text, #US + text{
-  fill: black;
 }

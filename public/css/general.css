@@ -7,14 +7,32 @@ body{
   src:url('/fonts/Apricity400.otf');
   font-family: "Apricity";
 }
+@font-face {
+  src:url('/fonts/Chapaza.ttf');
+  font-family: "Chapaza";
+}
 h2{
   font-family: Apricity;
   color: #333333;
-  font-size: 36px;
+  font-size: 38px;
+  letter-spacing: 1px;
 }
 svg{
-  background-color: #44f498;
+  background-color: #3CB371;
   border-radius: 3px;
+  font-family: Chapaza;
+  font-weight: bold;
+}
+a{
+  color: white;;
+  background-color: #443355;
+  padding: 10px;
+  letter-spacing: .5px;
+}
+p{
+  font-family: Chapaza;
+  margin-top: 35px;
+  letter-spacing: .75px;
 }
 .axis path{
   fill: none;
@@ -23,5 +41,24 @@ svg{
 }
 .tick text{
   fill: #222222;
-  opacity: 1
+  opacity: 1;
+  font-weight: normal;
+}
+.buttons-div{
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+a:hover{
+  background-color: #665577;
+  color: white;
+  text-decoration: none;
+  transition: background-color .5s;
+}
+li{
+  color: #665577;
+}
+.graphs{
+  border-top: 1px solid #333333;
+  margin-top: 50px;
+  padding-top: 40px;
 }
