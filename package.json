@@ -1,0 +1,26 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "data visualization on knowledge of current events",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "node": "^0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pseelinger/j583-Final-.git"
+  },
+  "author": "Patrick Seelinger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pseelinger/j583-Final-/issues"
+  },
+  "homepage": "https://github.com/pseelinger/j583-Final-#readme"
+}

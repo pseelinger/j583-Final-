@@ -62,3 +62,15 @@ li{
   margin-top: 50px;
   padding-top: 40px;
 }
+footer{
+  margin-top: 25px;
+  background-color: #665577;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+}
+footer a{
+  padding: 0;
+  color: #3CB371;
+  background-color: #665577;
+}
