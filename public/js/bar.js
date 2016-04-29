@@ -1,3 +1,4 @@
+//Draws the bar graphs to the first page
 function drawGraphs(dataset){
   console.log(dataset);
 var outer_width = 400,
@@ -23,6 +24,8 @@ var svg = {};
 var div = d3.select("body").append("div")
 .attr("class", "info-box");
 
+//Make an individual svg here for each country
+
 countries.forEach(function(entry){
  svg[entry] = d3.select("#" + entry).append("svg")
      .attr("width", outer_width)
@@ -40,6 +43,8 @@ countries.forEach(function(entry){
      .attr('fill', '#444444')
      .style('font-size', '21px');
 });
+
+//Fetch the data based on user input
 
 d3.csv(dataset, function(error, data){
 console.log(data);
@@ -88,6 +93,8 @@ x.domain(data.map(key));
 }
 
 drawGraphs("domestic.csv");
+
+//Controls which csv file is being used to draw the graphs
 
 $('#change-data').on('change', function(){
   $('.graph').hide();

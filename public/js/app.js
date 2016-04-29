@@ -1,3 +1,4 @@
+//The main purpose of this file is to allow the tab functionality for the international scores graphs
 var app = angular.module('myApp', []);
 
 app.directive('tab', function() {
