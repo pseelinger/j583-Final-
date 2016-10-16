@@ -14,6 +14,6 @@ app.get('/credits', pages.credits);
 app.get('/spending', pages.bubble);
 
 //start the server
-app.listen(8080, function(){
+app.listen(process.env.PORT || 8080, function(){
   console.log("Express server started");
 });
